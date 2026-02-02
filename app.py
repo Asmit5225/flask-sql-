@@ -6,14 +6,7 @@ app.config['SQLALCHEMY_DATABASE_URI']= "sqlite:///asmit.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 db=SQLAlchemy(app)
 from sql_config.sql_actions import INSERT_INTO_TABLE
-class Todo(db.Model):#here we created a table and assigned it's rowns and columns in my asmit.db database
-    slno= db.Column(db.Integer,primary_key=True)
-    title=db.Column(db.String(200), nullable=False)
-    decs=db.Column(db.String(500),nullable=False)
-    date_created=db.Column(db.DateTime,default=datetime.utcnow)
-    
-    def __repr__(self):
-        return f"{self.slno}-{self.title}"
+
 
 @app.route("/", methods=['GET','POST'])  #now we have inserted values in my table Todo tarpor oi database er sob kota query er value gulo ke tule ami alltodo variable a store kore html a pass kore dilam 
 def hello_world():
