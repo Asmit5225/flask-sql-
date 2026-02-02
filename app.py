@@ -5,7 +5,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']= "sqlite:///asmit.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 db=SQLAlchemy(app)
-
+from sql_config.sql_actions import INSERT_INTO_TABLE
 class Todo(db.Model):#here we created a table and assigned it's rowns and columns in my asmit.db database
     slno= db.Column(db.Integer,primary_key=True)
     title=db.Column(db.String(200), nullable=False)
@@ -20,9 +20,7 @@ def hello_world():
     if request.method=='POST':
         Title=request.form["title"]
         desc=request.form["desc"]
-        todo= Todo(title=Title, decs=desc)
-        db.session.add(todo)
-        db.session.commit()
+        INSERT_INTO_TABLE(Title, desc)
     #todo= Todo(title="first todo", decs="start investing in stock market")
     #chips=Todo(title="second todo", decs="start investing in stock market")
     #protein=Todo(title="third todo", decs="start investing in stock market")
